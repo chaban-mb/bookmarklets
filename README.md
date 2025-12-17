@@ -40,7 +40,7 @@ javascript:document.querySelector('#sidebar [href*="merge_queue"]').click();
 javascript:document.querySelectorAll(".make-votable, [name*=make_votable]")[0].click(); document.querySelectorAll('#enter-edit, button.submit, #submitAliases')[0].click()
 ```
 
-### Open current page in Harmony
+### Open current page in [Harmony](https://harmony.pulsewidth.org.uk/)
 ```javascript
 javascript:(function(){const S=[{s:'meta[property="music:album"]',p:'content'},{s:'meta[property="music:album:url"]',p:'content'},{s:'meta[name="music:album"]',p:'content'},{s:'meta[property="og:url"]',t:'meta[property="og:type"][content="music.album"]',p:'content'},{s:'[data-testid="entityTitle"]~div a[href^="/album/"]',p:'href'},{s:'[data-testid="track-page"]>div:first-child a[href^="/album/"]',p:'href'}];const g=()=>{for(const i of S){const e=document.querySelector(i.s);if(e&&(!i.t||document.querySelector(i.t))){const v=e[i.p];if(v)return v}}return null};const a=g();const u=a||location.href;const h=new URL('https://harmony.pulsewidth.org.uk/release');h.searchParams.set('url',u);h.searchParams.set('category','preferred');location.href=h.toString();})();
 ```
@@ -66,17 +66,17 @@ javascript:$('[title="Remove link"]').click(); [].forEach.call(document.querySel
 javascript:void open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=${encodeURIComponent(location)}`);
 ```
 
-### Search YouTube video in archives
+### Search for YouTube video in archives with [YouTube Video Finder](https://findyoutubevideo.thetechrobo.ca/)
 ```javascript
 javascript:if (location.toString().indexOf('youtube.com')>0) {void(open('https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d=%27 + encodeURIComponent(location.href)));}
 ```
 
-### Open YouTube page in MW Metadata
+### Open YouTube page in [MW Metadata](https://mattw.io/youtube-metadata/)
 ```javascript
 javascript:if (location.toString().indexOf('youtube.com') > 0) {void(open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`));}
 ```
 
-### Open current Spotify or Deezer page in ISRC Hunt (new tab)
+### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
 ```javascript
 javascript:if (location.href.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)) { open(`https://isrchunt.com/?spotifyPlaylist=${location.href}`, null, "noopener");} else if (location.href.match(/open\.spotify\.com\/album/)) { open(`https://isrchunt.com/spotify/importisrc?releaseId=${location.href}`, null, "noopener");} else if (location.href.match(/www\.deezer\.com\/[^/]*\/album/)) { open(`https://isrchunt.com/deezer/importisrc?releaseId=${location.href}`, null, "noopener");}
 ```
@@ -91,7 +91,7 @@ javascript:(()=>{const s=window.location.href.match(/\/([0-9a-z]+)$/)?.slice(1);
 javascript:(()=>{const s=window.location.href.match(/deezer\.com\/\w{2}\/(album\/[0-9]+)$/)?.slice(1);s&&open(((s)=>`https://api.deezer.com/${s}`)(...s))})();
 ```
 
-### Open current page in MET - MusicBrainz Metadata Seeder
+### Open current page in [MET - MusicBrainz Metadata Seeder](https://seed.musichoarders.xyz/)
 ```javascript
 javascript:void open(`https://seed.musichoarders.xyz?identifier=${encodeURIComponent(location)}`);
 ```
@@ -106,7 +106,7 @@ javascript:document.querySelectorAll('a[href*="album/"], a[href*="release/"]').f
 javascript:document.querySelectorAll('a[href*="album/"]').forEach((a)=>{a.href='https://isrchunt.com/spotify/importisrc?releaseId=%27 + encodeURIComponent(a);});
 ```
 
-### Convert URLs with "/artist" to SAMBL links
+### Convert URLs with "/artist" to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links
 For use on Spotify only
 
 ```javascript
