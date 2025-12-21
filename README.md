@@ -17,17 +17,17 @@ To install a bookmarklet, create a new bookmark in your browser and paste the co
 ### Approve all edits on current page
 Requires the [power vote script](https://github.com/jesus2099/konami-command/blob/master/mb_POWER-VOTE.user.js).
 ```javascript
-javascript:[].forEach.call(document.querySelectorAll('a.positive[href*=approve]'), function(el) {el.click();});
+javascript:document.querySelectorAll('a.positive[href*=approve]').forEach(el=>el.click());
 ```
 
 ### Toggle relationships for removal
 ```javascript
-javascript:[].forEach.call(document.querySelectorAll('.relationship-list .remove-item'), function(el) {el.click();});
+javascript:document.querySelectorAll('.relationship-list .remove-item').forEach(el=>el.click());
 ```
 
 ### Toggle links for removal
 ```javascript
-javascript:[].forEach.call(document.querySelectorAll('[title="Remove link"]'), function(el) {el.click();});
+javascript:document.querySelectorAll('[title="Remove link"]').forEach(el=>el.click());
 ```
 
 ### Add currently viewed entity to merge queue
@@ -115,10 +115,10 @@ javascript:(function(){document.querySelectorAll('a[href*="artist/"]').forEach(f
 
 ### Search for releases of current artist
 ```javascript
-javascript:(function()%7Bswitch (!0) %7B%0Acase -1 < location.toString().indexOf("musicbrainz.org%2Fartist%2F")%3A%0A void open("https%3A%2F%2Fmusicbrainz.org%2Fsearch%3Fquery%3Darid%253A" %2B location.pathname.toString().slice(8%2C 45) %2B "%26type%3Drelease%26limit%3D100%26method%3Dadvanced")%3B%0A%7D%3B%0Avoid 0%7D)()%3B
+javascript:(()=>{const m=location.pathname.match(/\/artist\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query=arid:"+m[1]+"&type=release&limit=100&method=advanced");})();
 ```
 
 ### Search for recordings of current release or release group
 ```javascript
-javascript:switch(!0)%7Bcase -1<location.toString().indexOf("musicbrainz.org%2Frelease%2F")%3Avoid open("https%3A%2F%2Fmusicbrainz.org%2Fsearch%3Fquery%3Dreid%253A"%2Blocation.pathname.toString().slice(9%2C45)%2B"%26type%3Drecording%26limit%3D100%26method%3Dadvanced")%3Bbreak%3Bcase -1<location.toString().indexOf("musicbrainz.org%2Frelease-group%2F")%3Avoid open("https%3A%2F%2Fmusicbrainz.org%2Fsearch%3Fquery%3Drgid%253A"%2Blocation.pathname.toString().slice(15%2C51)%2B"%26type%3Drecording%26limit%3D100%26method%3Dadvanced")%7D%3Bvoid+0
+javascript:(()=>{const m=location.pathname.match(/\/(release|release-group)\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query="+(m[1]==='release'?'reid':'rgid')+":"+m[2]+"&type=recording&limit=100&method=advanced");})();
 ```
