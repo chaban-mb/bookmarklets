@@ -17,27 +17,27 @@ To install a bookmarklet, create a new bookmark in your browser and paste the co
 ### Approve all edits on current page
 Requires the [power vote script](https://github.com/jesus2099/konami-command/blob/master/mb_POWER-VOTE.user.js).
 ```javascript
-javascript:document.querySelectorAll('a.positive[href*=approve]').forEach(el=>el.click());
+javascript:(()=>{document.querySelectorAll('a.positive[href*=approve]').forEach(el=>el.click());})();
 ```
 
 ### Toggle relationships for removal
 ```javascript
-javascript:document.querySelectorAll('.relationship-list .remove-item').forEach(el=>el.click());
+javascript:(()=>{document.querySelectorAll('.relationship-list .remove-item').forEach(el=>el.click());})();
 ```
 
 ### Toggle links for removal
 ```javascript
-javascript:document.querySelectorAll('[title="Remove link"]').forEach(el=>el.click());
+javascript:(()=>{document.querySelectorAll('[title="Remove link"]').forEach(el=>el.click());})();
 ```
 
 ### Add currently viewed entity to merge queue
 ```javascript
-javascript:document.querySelector('#sidebar [href*="merge_queue"]')?.click();
+javascript:(()=>{document.querySelector('#sidebar [href*="merge_queue"]')?.click();})();
 ```
 
 ### Submit edit votable
 ```javascript
-javascript:document.querySelector('.make-votable, [name*="make_votable"]')?.click();document.querySelector('#enter-edit, button.submit, #submitAliases')?.click();
+javascript:(()=>{document.querySelector('.make-votable, [name*="make_votable"]')?.click();document.querySelector('#enter-edit, button.submit, #submitAliases')?.click();})();
 ```
 
 ### Open current page in [Harmony](https://harmony.pulsewidth.org.uk/)
@@ -58,22 +58,22 @@ javascript:(function(){const errs=['rate limit','Failed to fetch resource at','T
 
 ### Convert to pseudo-release
 ```javascript
-javascript:$('[title="Remove link"]').click(); document.querySelectorAll('.remove-release-event, .remove-release-label').forEach(el=>el.click()); $('#status').val('4').trigger('change');  $('#barcode').val('').trigger('change'); $('#no-barcode').prop('checked', false); $("select[id|='packaging']").val('').trigger('change') ; $("select[id|='medium-format']").val('').trigger('change'); $('.format input[type=checkbox]').prop('checked', false); $('.format input[type=checkbox]').click(); $('.track-length').val('').trigger('change'); $("[href^='#edit-note']").click(); $('#edit-note-text').val('pseudo-release').trigger('change');
+javascript:(()=>{ $('[title="Remove link"]').click(); document.querySelectorAll('.remove-release-event, .remove-release-label').forEach(el=>el.click()); $('#status').val('4').trigger('change');  $('#barcode').val('').trigger('change'); $('#no-barcode').prop('checked', false); $("select[id|='packaging']").val('').trigger('change') ; $("select[id|='medium-format']").val('').trigger('change'); $('.format input[type=checkbox]').prop('checked', false); $('.format input[type=checkbox]').click(); $('.track-length').val('').trigger('change'); $("[href^='#edit-note']").click(); $('#edit-note-text').val('pseudo-release').trigger('change'); })();
 ```
 
 ### Lookup current page URL in MusicBrainz
 ```javascript
-javascript:void(window.open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=${encodeURIComponent(location.href)}`));
+javascript:(()=>{window.open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=${encodeURIComponent(location.href)}`);})();
 ```
 
 ### Search for YouTube video in archives with [YouTube Video Finder](https://findyoutubevideo.thetechrobo.ca/)
 ```javascript
-javascript:if(location.hostname.includes('youtube.com')){window.open(`https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d=${encodeURIComponent(location.href)}`);}
+javascript:(()=>{if(location.hostname.includes('youtube.com')){window.open(`https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d=${encodeURIComponent(location.href)}`);}})();
 ```
 
 ### Open YouTube page in [MW Metadata](https://mattw.io/youtube-metadata/)
 ```javascript
-javascript:if(location.hostname.includes('youtube.com')){window.open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}
+javascript:(()=>{if(location.hostname.includes('youtube.com')){window.open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}})();
 ```
 
 ### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
@@ -105,17 +105,17 @@ javascript:(()=>{const s=window.location.href.match(/deezer\.com\/\w{2}\/(album\
 
 ### Open current page in [MET - MusicBrainz Metadata Seeder](https://seed.musichoarders.xyz/)
 ```javascript
-javascript:void(window.open(`https://seed.musichoarders.xyz?identifier=${encodeURIComponent(location.href)}`));
+javascript:(()=>{window.open(`https://seed.musichoarders.xyz?identifier=${encodeURIComponent(location.href)}`);})();
 ```
 
 ### Convert URLs with "album/" or "release/" to Harmony links
 ```javascript
-javascript:document.querySelectorAll('a[href*="album/"], a[href*="release/"]').forEach(a=>{a.href=`https://harmony.pulsewidth.org.uk/release?url=${encodeURIComponent(a.href)}&category=preferred`;});
+javascript:(()=>{document.querySelectorAll('a[href*="album/"], a[href*="release/"]').forEach(a=>{a.href=`https://harmony.pulsewidth.org.uk/release?url=${encodeURIComponent(a.href)}&category=preferred`;});})();
 ```
 
 ### Convert URLs with "/album" to ISRC Hunt links
 ```javascript
-javascript:document.querySelectorAll('a[href*="album/"]').forEach(a=>{a.href=`https://isrchunt.com/spotify/importisrc?releaseId=${encodeURIComponent(a.href)}`;});
+javascript:(()=>{document.querySelectorAll('a[href*="album/"]').forEach(a=>{a.href=`https://isrchunt.com/spotify/importisrc?releaseId=${encodeURIComponent(a.href)}`;});})();
 ```
 
 ### Convert supported artist URLs to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links
