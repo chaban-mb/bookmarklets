@@ -32,13 +32,12 @@ javascript:document.querySelectorAll('[title="Remove link"]').forEach(el=>el.cli
 
 ### Add currently viewed entity to merge queue
 ```javascript
-javascript:document.querySelector('#sidebar [href*="merge_queue"]').click();
+javascript:document.querySelector('#sidebar [href*="merge_queue"]')?.click();
 ```
 
 ### Submit edit votable
 ```javascript
-javascript:document.querySelectorAll(".make-votable, [name*=make_votable]")[0].click(); document.querySelectorAll('#enter-edit, button.submit, #submitAliases')[0].click()
-```
+javascript:document.querySelector('.make-votable, [name*="make_votable"]')?.click();document.querySelector('#enter-edit, button.submit, #submitAliases')?.click();
 
 ### Open current page in [Harmony](https://harmony.pulsewidth.org.uk/)
 ```javascript
@@ -63,47 +62,47 @@ javascript:$('[title="Remove link"]').click(); document.querySelectorAll('.remov
 
 ### Lookup current page URL in MusicBrainz
 ```javascript
-javascript:void open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=${encodeURIComponent(location)}`);
+javascript:void(window.open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=${encodeURIComponent(location.href)}`));
 ```
 
 ### Search for YouTube video in archives with [YouTube Video Finder](https://findyoutubevideo.thetechrobo.ca/)
 ```javascript
-javascript:if(location.hostname.includes('youtube.com')){open('https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d='+encodeURIComponent(location.href));}
+javascript:if(location.hostname.includes('youtube.com')){window.open(`https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d=${encodeURIComponent(location.href)}`);}
 ```
 
 ### Open YouTube page in [MW Metadata](https://mattw.io/youtube-metadata/)
 ```javascript
-javascript:if(location.hostname.includes('youtube.com')){open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}
+javascript:if(location.hostname.includes('youtube.com')){window.open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}
 ```
 
 ### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
 ```javascript
-javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/album/)){open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
+javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){window.open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/album/)){window.open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){window.open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
 ```
 
 ### Show API data for Qobuz album
 ```javascript
-javascript:(()=>{const s=window.location.href.match(/\/([0-9a-z]+)$/)?.slice(1);s&&open(((s)=>`https://www.qobuz.com/api.json/0.2/album/get?album_id=${s}&app_id=712109809`)(...s))})();
+javascript:(()=>{const s=window.location.href.match(/\/([0-9a-z]+)$/)?.slice(1);s&&window.open(((s)=>`https://www.qobuz.com/api.json/0.2/album/get?album_id=${s}&app_id=712109809`)(...s))})();
 ```
 
 ### Show API data for Deezer album
 ```javascript
-javascript:(()=>{const s=window.location.href.match(/deezer\.com\/\w{2}\/(album\/[0-9]+)$/)?.slice(1);s&&open(((s)=>`https://api.deezer.com/${s}`)(...s))})();
+javascript:(()=>{const s=window.location.href.match(/deezer\.com\/\w{2}\/(album\/[0-9]+)$/)?.slice(1);s&&window.open(((s)=>`https://api.deezer.com/${s}`)(...s))})();
 ```
 
 ### Open current page in [MET - MusicBrainz Metadata Seeder](https://seed.musichoarders.xyz/)
 ```javascript
-javascript:void open(`https://seed.musichoarders.xyz?identifier=${encodeURIComponent(location)}`);
+javascript:void(window.open(`https://seed.musichoarders.xyz?identifier=${encodeURIComponent(location.href)}`));
 ```
 
 ### Convert URLs with "album/" or "release/" to Harmony links
 ```javascript
-javascript:document.querySelectorAll('a[href*="album/"], a[href*="release/"]').forEach((a)=>{a.href='https://harmony.pulsewidth.org.uk/release?url=%27 + encodeURIComponent(a) + %27&category=preferred%27;});
+javascript:document.querySelectorAll('a[href*="album/"], a[href*="release/"]').forEach(a=>{a.href=`https://harmony.pulsewidth.org.uk/release?url=${encodeURIComponent(a.href)}&category=preferred`;});
 ```
 
 ### Convert URLs with "/album" to ISRC Hunt links
 ```javascript
-javascript:document.querySelectorAll('a[href*="album/"]').forEach((a)=>{a.href='https://isrchunt.com/spotify/importisrc?releaseId=%27 + encodeURIComponent(a);});
+javascript:document.querySelectorAll('a[href*="album/"]').forEach(a=>{a.href=`https://isrchunt.com/spotify/importisrc?releaseId=${encodeURIComponent(a.href)}`;});
 ```
 
 ### Convert URLs with "/artist" to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links
