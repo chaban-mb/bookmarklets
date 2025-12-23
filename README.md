@@ -38,6 +38,7 @@ javascript:document.querySelector('#sidebar [href*="merge_queue"]')?.click();
 ### Submit edit votable
 ```javascript
 javascript:document.querySelector('.make-votable, [name*="make_votable"]')?.click();document.querySelector('#enter-edit, button.submit, #submitAliases')?.click();
+```
 
 ### Open current page in [Harmony](https://harmony.pulsewidth.org.uk/)
 ```javascript
