@@ -42,12 +42,12 @@ javascript:document.querySelectorAll(".make-votable, [name*=make_votable]")[0].c
 
 ### Open current page in [Harmony](https://harmony.pulsewidth.org.uk/)
 ```javascript
-javascript:(function(){const S=[{s:'meta[property="music:album"]',p:'content'},{s:'meta[property="music:album:url"]',p:'content'},{s:'meta[name="music:album"]',p:'content'},{s:'meta[property="og:url"]',t:'meta[property="og:type"][content="music.album"]',p:'content'},{s:'[data-testid="entityTitle"]~div a[href^="/album/"]',p:'href'},{s:'[data-testid="track-page"]>div:first-child a[href^="/album/"]',p:'href'}];const g=()=>{for(const i of S){const e=document.querySelector(i.s);if(e&&(!i.t||document.querySelector(i.t))){const v=e[i.p];if(v)return v}}return null};const a=g();const u=a||location.href;const h=new URL('https://harmony.pulsewidth.org.uk/release');h.searchParams.set('url',u);h.searchParams.set('category','preferred');location.href=h.toString();})();
+javascript:(()=>{const S=[{s:'meta[property="music:album"]',p:'content'},{s:'meta[property="music:album:url"]',p:'content'},{s:'meta[name="music:album"]',p:'content'},{s:'meta[property="og:url"]',t:'meta[property="og:type"][content="music.album"]',p:'content'},{s:'[data-testid="entityTitle"]~div a[href^="/album/"]',p:'href'},{s:'[data-testid="track-page"]>div:first-child a[href^="/album/"]',p:'href'}];const u=S.reduce((a,i)=>{if(a)return a;const e=document.querySelector(i.s);return(e&&(!i.t||document.querySelector(i.t)))?e[i.p]:null},null)||location.href;const h=new URL('https://harmony.pulsewidth.org.uk/release');h.searchParams.set('url',u);h.searchParams.set('category','preferred');location.href=h.toString();})();
 ```
 
 ### Open current page in Harmony (new tab)
 ```javascript
-javascript:(function(){const S=[{s:'meta[property="music:album"]',p:'content'},{s:'meta[property="music:album:url"]',p:'content'},{s:'meta[name="music:album"]',p:'content'},{s:'meta[property="og:url"]',t:'meta[property="og:type"][content="music.album"]',p:'content'},{s:'[data-testid="entityTitle"]~div a[href^="/album/"]',p:'href'},{s:'[data-testid="track-page"]>div:first-child a[href^="/album/"]',p:'href'}];const g=()=>{for(const i of S){const e=document.querySelector(i.s);if(e&&(!i.t||document.querySelector(i.t))){const v=e[i.p];if(v)return v}}return null};const a=g();const u=a||location.href;const h=new URL('https://harmony.pulsewidth.org.uk/release');h.searchParams.set('url',u);h.searchParams.set('category','preferred');window.open(h.toString(),'_blank');})();
+javascript:(()=>{const S=[{s:'meta[property="music:album"]',p:'content'},{s:'meta[property="music:album:url"]',p:'content'},{s:'meta[name="music:album"]',p:'content'},{s:'meta[property="og:url"]',t:'meta[property="og:type"][content="music.album"]',p:'content'},{s:'[data-testid="entityTitle"]~div a[href^="/album/"]',p:'href'},{s:'[data-testid="track-page"]>div:first-child a[href^="/album/"]',p:'href'}];const u=S.reduce((a,i)=>{if(a)return a;const e=document.querySelector(i.s);return(e&&(!i.t||document.querySelector(i.t)))?e[i.p]:null},null)||location.href;const h=new URL('https://harmony.pulsewidth.org.uk/release');h.searchParams.set('url',u);h.searchParams.set('category','preferred');window.open(h.toString(),'_blank');})();
 ```
 
 ### Multi-tool
@@ -58,7 +58,7 @@ javascript:(function(){if((location.hostname.includes('magicisrc')&&document.que
 
 ### Convert to pseudo-release
 ```javascript
-javascript:$('[title="Remove link"]').click(); [].forEach.call(document.querySelectorAll('.remove-release-event, .remove-release-label'), function(el) {el.click();}); $('#status').val('4').trigger('change');  $('#barcode').val('').trigger('change'); $('#no-barcode').prop('checked', false); $("select[id|='packaging']").val('').trigger('change') ; $("select[id|='medium-format']").val('').trigger('change'); $('.format input[type=checkbox]').prop('checked', false); $('.format input[type=checkbox]').click(); $('.track-length').val('').trigger('change'); $("[href^='#edit-note']").click(); $('#edit-note-text').val('pseudo-release').trigger('change');
+javascript:$('[title="Remove link"]').click(); document.querySelectorAll('.remove-release-event, .remove-release-label').forEach(el=>el.click()); $('#status').val('4').trigger('change');  $('#barcode').val('').trigger('change'); $('#no-barcode').prop('checked', false); $("select[id|='packaging']").val('').trigger('change') ; $("select[id|='medium-format']").val('').trigger('change'); $('.format input[type=checkbox]').prop('checked', false); $('.format input[type=checkbox]').click(); $('.track-length').val('').trigger('change'); $("[href^='#edit-note']").click(); $('#edit-note-text').val('pseudo-release').trigger('change');
 ```
 
 ### Lookup current page URL in MusicBrainz
@@ -68,17 +68,17 @@ javascript:void open(`https://musicbrainz.org/otherlookup/url?other-lookup.url=$
 
 ### Search for YouTube video in archives with [YouTube Video Finder](https://findyoutubevideo.thetechrobo.ca/)
 ```javascript
-javascript:if (location.toString().indexOf('youtube.com')>0) {void(open('https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d=%27 + encodeURIComponent(location.href)));}
+javascript:if(location.hostname.includes('youtube.com')){open('https://findyoutubevideo.thetechrobo.ca/noscript_load.html?d='+encodeURIComponent(location.href));}
 ```
 
 ### Open YouTube page in [MW Metadata](https://mattw.io/youtube-metadata/)
 ```javascript
-javascript:if (location.toString().indexOf('youtube.com') > 0) {void(open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`));}
+javascript:if(location.hostname.includes('youtube.com')){open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}
 ```
 
 ### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
 ```javascript
-javascript:if (location.href.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)) { open(`https://isrchunt.com/?spotifyPlaylist=${location.href}`, null, "noopener");} else if (location.href.match(/open\.spotify\.com\/album/)) { open(`https://isrchunt.com/spotify/importisrc?releaseId=${location.href}`, null, "noopener");} else if (location.href.match(/www\.deezer\.com\/[^/]*\/album/)) { open(`https://isrchunt.com/deezer/importisrc?releaseId=${location.href}`, null, "noopener");}
+javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/album/)){open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
 ```
 
 ### Show API data for Qobuz album
@@ -110,7 +110,7 @@ javascript:document.querySelectorAll('a[href*="album/"]').forEach((a)=>{a.href='
 For use on Spotify only
 
 ```javascript
-javascript:(function(){document.querySelectorAll('a[href*="artist/"]').forEach(function(a){var match=a.href.match(/artist\/([^/]+)/);if(match&&match[1]){var providerId=match[1];a.href='https://sambl.lioncat6.com/artist?provider=spotify&provider_id=%27+providerId;}});})();
+javascript:document.querySelectorAll('a[href*="artist/"]').forEach(a=>{const m=a.href.match(/artist\/([^/]+)/);if(m?.[1])a.href='https://sambl.lioncat6.com/artist?provider=spotify&provider_id='+m[1];});
 ```
 
 ### Search for releases of current artist
