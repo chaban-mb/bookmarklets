@@ -81,6 +81,18 @@ javascript:if(location.hostname.includes('youtube.com')){window.open(`https://ma
 javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){window.open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/album/)){window.open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){window.open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
 ```
 
+### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React)
+
+```javascript
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)\/?(\?|#|$)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com\/?(\?|#|$)/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)\/?(\?|#|$)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){location.href=%60https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}%60;break}}})();
+```
+
+### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React) (new tab)
+
+```javascript
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)\/?(\?|#|$)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com\/?(\?|#|$)/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)\/?(\?|#|$)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){window.open(%60https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}%60);break}}})();
+```
+
 ### Show API data for Qobuz album
 ```javascript
 javascript:(()=>{const s=window.location.href.match(/\/([0-9a-z]+)$/)?.slice(1);s&&window.open(((s)=>`https://www.qobuz.com/api.json/0.2/album/get?album_id=${s}&app_id=712109809`)(...s))})();
