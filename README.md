@@ -84,13 +84,13 @@ javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\
 ### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React)
 
 ```javascript
-javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)\/?(\?|#|$)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com\/?(\?|#|$)/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)\/?(\?|#|$)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){location.href=%60https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}%60;break}}})();
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){location.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`;break}}})();
 ```
 
 ### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React) (new tab)
 
 ```javascript
-javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)\/?(\?|#|$)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)\/?(\?|#|$)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com\/?(\?|#|$)/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)\/?(\?|#|$)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){window.open(%60https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}%60);break}}})();
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){window.open(`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`);break}}})();
 ```
 
 ### Show API data for Qobuz album
