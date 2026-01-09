@@ -129,9 +129,9 @@ javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[h
 ```javascript
 javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[href*="/artist/"],a[href*=".bandcamp.com"]';if(!i)s+=',a[href*="soundcloud.com/"]';if(i)s+=',a[class*="username"]:not([aria-haspopup="true"]),a[class*="Badge"]:not([aria-haspopup="true"]),a[class*="avatar"]:not([aria-haspopup="true"])';const p={s:/spotify\.com\/artist\/(\w+)/,d:/deezer\.com\/.*artist\/(\d+)/,t:/tidal\.com\/.*artist\/(\d+)/,b:/:\/\/([^.]+)\.bandcamp\.com/,sc:/soundcloud\.com\/([^\/?#]+)(?:$|[?#])/};document.querySelectorAll(s).forEach(a=>{const u=a.href;let k=0,id=0;if(u.match(p.s)){k='spotify';id=RegExp.$1}else if(u.match(p.b)){k='bandcamp';id=RegExp.$1}else if(u.match(p.d)){k='deezer';id=RegExp.$1}else if(u.match(p.t)){k='tidal';id=RegExp.$1}else{const m=u.match(p.sc);if(m){k='soundcloud';id='https://soundcloud.com/'+m[1]}}if(k){a.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(id)}`;a.target="_blank"}})})();
 ```
-### Search for releases of current artist
+### Search for releases of current artist or label
 ```javascript
-javascript:(()=>{const m=location.pathname.match(/\/artist\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query=arid:"+m[1]+"&type=release&limit=100&method=advanced");})();
+javascript:(()=>{const m=location.pathname.match(/\/(artist|label)\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query="+(m[1]==='artist'?'arid':'laid')+":"+m[2]+"&type=release&limit=100&method=advanced");})();
 ```
 
 ### Search for recordings of current release or release group
