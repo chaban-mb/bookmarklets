@@ -78,19 +78,19 @@ javascript:if(location.hostname.includes('youtube.com')){window.open(`https://ma
 
 ### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
 ```javascript
-javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){window.open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/album/)){window.open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){window.open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
+javascript:(()=>{const h=location.href;if(h.match(/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/)){window.open(`https://isrchunt.com/?spotifyPlaylist=${h}`,null,"noopener")}else if(h.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?album/)){window.open(`https://isrchunt.com/spotify/importisrc?releaseId=${h}`,null,"noopener")}else if(h.match(/www\.deezer\.com\/[^/]*\/album/)){window.open(`https://isrchunt.com/deezer/importisrc?releaseId=${h}`,null,"noopener")}})()
 ```
 
 ### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React)
 
 ```javascript
-javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){location.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`;break}}})();
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?:intl-[a-z]+\/)?(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){location.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`;break}}})();
 ```
 
 ### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React) (new tab)
 
 ```javascript
-javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){window.open(`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`);break}}})();
+javascript:(()=>{const p={spotify:/spotify\.com\/artist\/(?:intl-[a-z]+\/)?(?<id>\w+)/,deezer:/deezer\.com\/.*artist\/(?<id>\d+)/,tidal:/tidal\.com\/.*artist\/(?<id>\d+)/,bandcamp:/:\/\/(?<id>[^.]+)\.bandcamp\.com/,soundcloud:/(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/};for(const[k,r]of Object.entries(p)){const m=location.href.match(r);if(m){window.open(`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(m.groups.id)}`);break}}})();
 ```
 
 ### Show API data for Qobuz album
@@ -121,13 +121,13 @@ javascript:document.querySelectorAll('a[href*="album/"]').forEach(a=>{a.href=`ht
 ### Convert supported artist URLs to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links
 
 ```javascript
-javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[href*="/artist/"],a[href*=".bandcamp.com"]';if(!i)s+=',a[href*="soundcloud.com/"]';if(i)s+=',a[class*="username"]:not([aria-haspopup="true"]),a[class*="Badge"]:not([aria-haspopup="true"]),a[class*="avatar"]:not([aria-haspopup="true"])';const p={s:/spotify\.com\/artist\/(\w+)/,d:/deezer\.com\/.*artist\/(\d+)/,t:/tidal\.com\/.*artist\/(\d+)/,b:/:\/\/([^.]+)\.bandcamp\.com/,sc:/soundcloud\.com\/([^\/?#]+)(?:$|[?#])/};document.querySelectorAll(s).forEach(a=>{const u=a.href;let k=0,id=0;if(u.match(p.s)){k='spotify';id=RegExp.$1}else if(u.match(p.b)){k='bandcamp';id=RegExp.$1}else if(u.match(p.d)){k='deezer';id=RegExp.$1}else if(u.match(p.t)){k='tidal';id=RegExp.$1}else{const m=u.match(p.sc);if(m){k='soundcloud';id='https://soundcloud.com/'+m[1]}}if(k)a.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(id)}`})})();
+javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[href*="/artist/"],a[href*=".bandcamp.com"]';if(!i)s+=',a[href*="soundcloud.com/"]';if(i)s+=',a[class*="username"]:not([aria-haspopup="true"]),a[class*="Badge"]:not([aria-haspopup="true"]),a[class*="avatar"]:not([aria-haspopup="true"])';const p={s:/spotify\.com\/(?:intl-[a-z]+\/)?artist\/(\w+)/,d:/deezer\.com\/.*artist\/(\d+)/,t:/tidal\.com\/.*artist\/(\d+)/,b:/:\/\/([^.]+)\.bandcamp\.com/,sc:/soundcloud\.com\/([^\/?#]+)(?:$|[?#])/};document.querySelectorAll(s).forEach(a=>{const u=a.href;let k=0,id=0;if(u.match(p.s)){k='spotify';id=RegExp.$1}else if(u.match(p.b)){k='bandcamp';id=RegExp.$1}else if(u.match(p.d)){k='deezer';id=RegExp.$1}else if(u.match(p.t)){k='tidal';id=RegExp.$1}else{const m=u.match(p.sc);if(m){k='soundcloud';id='https://soundcloud.com/'+m[1]}}if(k)a.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(id)}`})})();
 ```
 
 ### Convert supported artist URLs to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links (new tab)
 
 ```javascript
-javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[href*="/artist/"],a[href*=".bandcamp.com"]';if(!i)s+=',a[href*="soundcloud.com/"]';if(i)s+=',a[class*="username"]:not([aria-haspopup="true"]),a[class*="Badge"]:not([aria-haspopup="true"]),a[class*="avatar"]:not([aria-haspopup="true"])';const p={s:/spotify\.com\/artist\/(\w+)/,d:/deezer\.com\/.*artist\/(\d+)/,t:/tidal\.com\/.*artist\/(\d+)/,b:/:\/\/([^.]+)\.bandcamp\.com/,sc:/soundcloud\.com\/([^\/?#]+)(?:$|[?#])/};document.querySelectorAll(s).forEach(a=>{const u=a.href;let k=0,id=0;if(u.match(p.s)){k='spotify';id=RegExp.$1}else if(u.match(p.b)){k='bandcamp';id=RegExp.$1}else if(u.match(p.d)){k='deezer';id=RegExp.$1}else if(u.match(p.t)){k='tidal';id=RegExp.$1}else{const m=u.match(p.sc);if(m){k='soundcloud';id='https://soundcloud.com/'+m[1]}}if(k){a.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(id)}`;a.target="_blank"}})})();
+javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[href*="/artist/"],a[href*=".bandcamp.com"]';if(!i)s+=',a[href*="soundcloud.com/"]';if(i)s+=',a[class*="username"]:not([aria-haspopup="true"]),a[class*="Badge"]:not([aria-haspopup="true"]),a[class*="avatar"]:not([aria-haspopup="true"])';const p={s:/spotify\.com\/(?:intl-[a-z]+\/)?artist\/(\w+)/,d:/deezer\.com\/.*artist\/(\d+)/,t:/tidal\.com\/.*artist\/(\d+)/,b:/:\/\/([^.]+)\.bandcamp\.com/,sc:/soundcloud\.com\/([^\/?#]+)(?:$|[?#])/};document.querySelectorAll(s).forEach(a=>{const u=a.href;let k=0,id=0;if(u.match(p.s)){k='spotify';id=RegExp.$1}else if(u.match(p.b)){k='bandcamp';id=RegExp.$1}else if(u.match(p.d)){k='deezer';id=RegExp.$1}else if(u.match(p.t)){k='tidal';id=RegExp.$1}else{const m=u.match(p.sc);if(m){k='soundcloud';id='https://soundcloud.com/'+m[1]}}if(k){a.href=`https://sambl.lioncat6.com/newartist?provider=${k}&provider_id=${encodeURIComponent(id)}`;a.target="_blank"}})})();
 ```
 ### Search for releases of current artist or label
 ```javascript
