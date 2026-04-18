@@ -131,10 +131,10 @@ javascript:(()=>{const i=location.hostname.includes('soundcloud.com');let s='a[h
 ```
 ### Search for releases of current artist or label
 ```javascript
-javascript:(()=>{const m=location.pathname.match(/\/(artist|label)\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query="+(m[1]==='artist'?'arid':'laid')+":"+m[2]+"&type=release&limit=100&method=advanced");})();
+javascript:(()=>{const m=location.pathname.match(/\/(artist|label)\/([a-f0-9-]{36})/);if(m)window.open(`${location.origin}/search?query=${m[1]==='artist'?'arid':'laid'}:${m[2]}&type=release&limit=100&method=advanced`);})();
 ```
 
-### Search for recordings of current release or release group
+### Search for recordings of current release, release group, or artist
 ```javascript
-javascript:(()=>{const m=location.pathname.match(/\/(release|release-group)\/([a-f0-9-]{36})/);if(m)window.open(location.origin+"/search?query="+(m[1]==='release'?'reid':'rgid')+":"+m[2]+"&type=recording&limit=100&method=advanced");})();
+javascript:(()=>{const m=location.pathname.match(/\/(release|release-group|artist)\/([a-f0-9-]{36})/);if(m){const p={'release':'reid','release-group':'rgid','artist':'arid'};window.open(`${location.origin}/search?query=${p[m[1]]}:${m[2]}&type=recording&limit=100&method=advanced`);}})();
 ```
