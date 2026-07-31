@@ -138,3 +138,8 @@ javascript:(()=>{const m=location.pathname.match(/\/(artist|label)\/([a-f0-9-]{3
 ```javascript
 javascript:(()=>{const m=location.pathname.match(/\/(release|release-group|artist)\/([a-f0-9-]{36})/);if(m){const p={'release':'reid','release-group':'rgid','artist':'arid'};window.open(`${location.origin}/search?query=${p[m[1]]}:${m[2]}&type=recording&limit=100&method=advanced`);}})();
 ```
+
+### Export localStorage and Cookies
+```javascript
+javascript:(function(){try{const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);data[k]=localStorage.getItem(k);}const l=JSON.stringify(data);const c=document.cookie;const s=`const localStorageRestoreData=${l};for(const k in localStorageRestoreData){if(Object.hasOwnProperty.call(localStorageRestoreData,k)){localStorage.setItem(k,localStorageRestoreData[k]);}}console.log('✅ localStorage restored: '+Object.keys(localStorageRestoreData).length+' items.');`.trim();const t=`const cookieString=\`${c.replace(/`/g,'\\`')}\`;if(cookieString){cookieString.split('; ').forEach(cp=>{document.cookie=cp;});console.log('✅ Attempted to restore accessible cookies.');}else{console.log('ℹ️ No accessible cookies found to restore.');}`.trim();const r=`/** * Restore localStorage and accessible cookies * Generated: ${new Date().toISOString()} */\n(function(){'use strict';${s}${t}})();`.trim();const a=document.createElement('textarea');a.value=r;a.style.position='absolute';a.style.left='-9999px';a.style.top='0';document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);alert("LocalStorage and accessible cookie restore script copied to clipboard!");}catch(e){alert("Failed to copy data. See console for details.");console.error("Bookmarklet Error:",e);}})();
+```
