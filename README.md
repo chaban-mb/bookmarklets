@@ -35,6 +35,12 @@ javascript:(()=>{document.querySelectorAll('[title="Remove link"]').forEach(el=>
 javascript:(()=>{document.querySelector('#sidebar [href*="merge_queue"]')?.click();})();
 ```
 
+### Batch delete entities
+Requires the [MusicBrainz Batch Delete Entities](https://github.com/chaban-mb/userscripts/blob/main/src/MusicBrainz%20Batch%20Delete%20Entities.user.js) userscript.
+```javascript
+javascript:(()=>{const items=Array.from(document.querySelectorAll('input[name="add-to-merge"]:checked, input[name="remove"]:checked'),b=>(b.closest('tr,li')||b.parentElement)?.querySelector('a[href]')?.href).filter(Boolean);if(document.dispatchEvent(new CustomEvent('UserJS:MusicBrainz',{detail:{action:'delete',items},bubbles:!0,cancelable:!0})))alert('MusicBrainz: Batch Delete Entities userscript is not active on this page.');})();
+```
+
 ### Submit edit votable
 ```javascript
 javascript:(()=>{document.querySelector('.make-votable, [name*="make_votable"]')?.click();document.querySelector('#enter-edit, button.submit, #submitAliases')?.click();})();
