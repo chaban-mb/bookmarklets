@@ -8,11 +8,11 @@
         deezer: /deezer\.com\/.*artist\/(?<id>\d+)/,
         tidal: /tidal\.com\/.*artist\/(?<id>\d+)/,
         bandcamp: /:\/\/(?<id>[^.]+)\.bandcamp\.com/,
-        soundcloud: /(?<id>^https?:\/\/soundcloud\.com\/[^\/?#]+)/,
+        soundcloud: /(?<id>^https?:\/\/soundcloud\.com\/[^/?#]+)/,
         volumo: /volumo\.com\/(?:\w+\/)?artist\/(?<id>\d+)/,
         discogs: /discogs\.com\/artist\/(?<id>\d+)/,
         applemusic: /music\.apple\.com\/.+?\/artist\/(?:.+?\/)?(?<id>\d+)/,
-        qobuz: /qobuz\.com\/(?:\w{2}-\w{2}\/)?(?:interpreter|artist)\/(?:[^\/]+\/)*?(?<id>[A-Za-z0-9]+)\/?(?:[?#]|$)/,
+        qobuz: /qobuz\.com\/(?:\w{2}-\w{2}\/)?(?:interpreter|artist)\/(?:[^/]+\/)*?(?<id>[A-Za-z0-9]+)\/?(?:[?#]|$)/,
         naver: /vibe\.naver\.com\/artist\/(?<id>\d+)/
     };
 

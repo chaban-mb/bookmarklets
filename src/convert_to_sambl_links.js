@@ -21,7 +21,7 @@
         volumo: /volumo\.com\/(?:\w+\/)?artist\/(\d+)/,
         discogs: /discogs\.com\/artist\/(\d+)/,
         applemusic: /music\.apple\.com\/.+?\/artist\/(?:.+?\/)?(\d+)/,
-        qobuz: /qobuz\.com\/(?:\w{2}-\w{2}\/)?(?:interpreter|artist)\/(?:[^\/]+\/)*?([A-Za-z0-9]+)\/?(?:[?#]|$)/,
+        qobuz: /qobuz\.com\/(?:\w{2}-\w{2}\/)?(?:interpreter|artist)\/(?:[^/]+\/)*?([A-Za-z0-9]+)\/?(?:[?#]|$)/,
         naver: /vibe\.naver\.com\/artist\/(\d+)/
     };
 
