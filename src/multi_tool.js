@@ -1,14 +1,16 @@
 /**
  * Multi-Tool for Release Editing & Seeding
  * 
- * Automates: Guess case, tab progression, submit edits, reload on rate limit errors,
- * seeding confirmation, and ISRC submitter forms.
+ * Automates: Release editor tab navigation & Guess Case, edit submission,
+ * Mass Merge Recordings, seeding/OAuth confirmations, Harmony actions,
+ * and automatic reload on MagicISRC errors or Harmony rate limit / server busy errors.
  */
 (function multiTool() {
     const errorMessages = [
         'rate limit',
         'Failed to fetch resource at',
-        'Too many requests queued'
+        'Too many requests queued',
+        'currently busy'
     ];
 
     const hasRateLimitError = (location.hostname.includes('magicisrc') && document.querySelector('#container h1')?.innerText.includes('error')) ||
@@ -60,8 +62,7 @@
 
     if (location.hostname.includes('harmony.pulsewidth.org.uk') || location.hostname.includes('harmony.mybrainz.dev')) {
         (document.querySelector('[value="Update external links in MusicBrainz"]') ||
-            document.querySelector('[value="Import into MusicBrainz"]') ||
-            document.querySelector('.magic-isrc'))?.click();
+            document.querySelector('[value="Import into MusicBrainz"]'))?.click();
         return;
     }
 
