@@ -62,7 +62,8 @@
 
     if (location.hostname.includes('harmony.pulsewidth.org.uk') || location.hostname.includes('harmony.mybrainz.dev')) {
         (document.querySelector('[value="Update external links in MusicBrainz"]') ||
-            document.querySelector('[value="Import into MusicBrainz"]'))?.click();
+            document.querySelector('[value="Import into MusicBrainz"]') ||
+            document.querySelector('#falcon-harmony-btn'))?.click();
         return;
     }
 
