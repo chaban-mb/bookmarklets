@@ -2,7 +2,7 @@
  * Multi-Tool for Release Editing & Seeding
  * 
  * Automates: Release editor tab navigation & Guess Case, edit submission,
- * Mass Merge Recordings, seeding/OAuth confirmations, Harmony actions,
+ * Mass Merge Recordings, seeding confirmation, Harmony actions,
  * Falcon execution on MusicBrainz, and automatic reload on MagicISRC errors
  * or Harmony rate limit / server busy errors.
  */
@@ -77,8 +77,7 @@
         document.querySelectorAll(
             '#enter-edit, #edit-submit, button.submit, #submit-button, #submitAliases, ' +
             '#batch_video, #check-isrcs button[type=button], #index-mbid-submit, ' +
-            '.confirm-seed button[type="submit"], form[action*="importisrc"][method="post"] .btn, ' +
-            'a[href*="importisrc?releaseId="], a[href^="https://musicbrainz.org/oauth2/authorize"]'
+            '.confirm-seed button[type="submit"]'
         )[0]?.click();
     }
 })();
