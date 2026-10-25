@@ -3,7 +3,8 @@
  * 
  * Automates: Release editor tab navigation & Guess Case, edit submission,
  * Mass Merge Recordings, seeding/OAuth confirmations, Harmony actions,
- * and automatic reload on MagicISRC errors or Harmony rate limit / server busy errors.
+ * Falcon execution on MusicBrainz, and automatic reload on MagicISRC errors
+ * or Harmony rate limit / server busy errors.
  */
 (function multiTool() {
     const errorMessages = [
@@ -19,6 +20,11 @@
 
     if (hasRateLimitError) {
         location.reload();
+        return;
+    }
+
+    if (location.hostname.includes('musicbrainz.org') && location.search.includes('falcon=') && document.querySelector('#falcon-run')) {
+        document.querySelector('#falcon-run').click();
         return;
     }
 
