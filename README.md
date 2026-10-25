@@ -82,11 +82,6 @@ javascript:(()=>{if(location.hostname.includes('youtube.com')){window.open(`http
 javascript:(()=>{if(location.hostname.includes('youtube.com')){window.open(`https://mattw.io/youtube-metadata/?url=${encodeURIComponent(location.href)}&submit=true`);}})();
 ```
 
-### Open current Spotify or Deezer page in [ISRC Hunt](https://isrchunt.com/) (new tab)
-```javascript
-javascript:(()=>{const h=location.href;const m=[{r:/open\.spotify\.com\/(?:[^/]+\/)?(?:playlist|artist)/,u:`https://isrchunt.com/?spotifyPlaylist=${h}`},{r:/open\.spotify\.com\/(?:intl-[a-z]+\/)?album/,u:`https://isrchunt.com/spotify/importisrc?releaseId=${h}`},{r:/www\.deezer\.com\/[^/]*\/album/,u:`https://isrchunt.com/deezer/importisrc?releaseId=${h}`}].find(x=>x.r.test(h));if(m)window.open(m.u,null,"noopener")})()
-```
-
 ### Open current artist page in [SAMBL](https://github.com/Lioncat6/SAMBL-React)
 
 ```javascript
@@ -117,11 +112,6 @@ javascript:(()=>{window.open(`https://seed.musichoarders.xyz?identifier=${encode
 ### Convert URLs with "album/" or "release/" to Harmony links
 ```javascript
 javascript:(()=>{document.querySelectorAll('a[href*="album/"], a[href*="release/"]').forEach(a=>{a.href=`https://harmony.pulsewidth.org.uk/release?url=${encodeURIComponent(a.href)}&category=preferred`;});})();
-```
-
-### Convert URLs with "/album" to ISRC Hunt links
-```javascript
-javascript:(()=>{document.querySelectorAll('a[href*="album/"]').forEach(a=>{a.href=`https://isrchunt.com/spotify/importisrc?releaseId=${encodeURIComponent(a.href)}`;});})();
 ```
 
 ### Convert supported artist URLs to [SAMBL](https://github.com/Lioncat6/SAMBL-React) links
